@@ -1,9 +1,8 @@
 #include <stdio.h>
 
-int main()
-{
+int main() {
     
-    int n, vetor[101], i, j, s, achou = 0;
+    int n, v[200], i, j, s, achou = 0;
     
     scanf("%d ", &n);
     for(i=0;i < n; i++)
@@ -11,10 +10,12 @@ int main()
     
     scanf("%d ", &s);
         
-    for(i=0;i < n && !achou; i++) {
+    for(i=0; i < n && !achou; i++) {
         
-        for(j=i;j < n && !achou; j++) {
-            if (v[i] + v[j] == s) {achou = 1;}
+        for(j=i; j < n && !achou; j++) {
+            if (v[i] + v[j] == s) {
+		    achou = 1;
+	    }
         }
             
     }
@@ -22,5 +23,5 @@ int main()
     if (achou) printf("ACHOU!!\n");
     else printf("ERRRROOOOUUUUU!!\n");
     
-    return 0;
+    //return 0;
 }

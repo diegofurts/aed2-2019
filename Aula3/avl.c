@@ -37,6 +37,7 @@ void Insere(TipoArvore *A, TipoItem I) {
 
     if ((*A) == NULL) { //arvore vazia
         CriaRaiz(A, I);
+        printf("Inserindo item com chave %d\n", (*A)->Item.Chave);
         return;
     }
     
@@ -53,27 +54,35 @@ void Insere(TipoArvore *A, TipoItem I) {
         Insere(&(*A)->esq, I);
         (*A)->alt = max((*A)->alt, retornaAltura(&(*A)->esq) + 1);
     }
-           
+               
     int bal = checaFB(A);
-    printf(" -- bal: %d\n", bal);
+    //printf(" -- bal: %d\n", bal);
     
     if (bal > 1) {
     
         TipoArvore filhoesq = (*A)->esq;
         int balfilho = checaFB(&filhoesq);
         
-        printf("Rotacionar a direita\n");
-        if (balfilho >= 0) rot_dir(A);
-        else rot_esq_dir(A); 
+        if (balfilho >= 0) {
+            printf("Rotacionar a direita\n");
+            rot_dir(A);
+        } else {
+            printf("Rotacionar esquerda-direita\n");
+            rot_esq_dir(A); 
+        }
         
     } else if (bal < -1) {
     
         TipoArvore filhodir = (*A)->dir;
         int balfilho = checaFB(&filhodir);
         
-        printf("Rotacionar a esquerda\n");
-        if (balfilho <= 0) rot_esq(A);
-        else rot_dir_esq(A);
+        if (balfilho <= 0) {
+            printf("Rotacionar a esquerda\n");
+            rot_esq(A);
+        } else {
+            printf("Rotacionar direita-esquerda\n");
+            rot_dir_esq(A); 
+        }
     
     }
     
@@ -132,6 +141,8 @@ void static achaMaiorETroca(TipoArvore *A, TipoArvore *Atual) {
 
 void Remove(TipoArvore *A, TipoChave C) {
 
+    //printf("Entrou na remocao do item com chave %d, olhando %d\n", C, (*A)->Item.Chave);
+
     if ((*A) == NULL) { // nao achou
         printf("ERRO ao remover: nao encontrou a chave\n");
         return;
@@ -139,33 +150,72 @@ void Remove(TipoArvore *A, TipoChave C) {
     
     if (C > (*A)->Item.Chave) { // direita
         //printf("(%d, %d) dir ->\n", C, (*A)->Item.Chave);
-        return Remove(&(*A)->dir, C);
+        Remove(&(*A)->dir, C);
     } else if (C < (*A)->Item.Chave) { // esquerda
         //printf("(%d, %d) <- esq\n", C, (*A)->Item.Chave);
-        return Remove(&(*A)->esq, C);
+        Remove(&(*A)->esq, C);
     }
+    
+    (*A)->alt = max(retornaAltura(&(*A)->esq), retornaAltura(&(*A)->dir)) + 1;
+        
+    int bal = checaFB(A);
+    //printf(" -- bal: %d\n", bal);
+    
+    if (bal > 1) {
+    
+        TipoArvore filhoesq = (*A)->esq;
+        int balfilho = checaFB(&filhoesq);
+        
+        if (balfilho >= 0) {
+            printf("Rotacionar a direita\n");
+            rot_dir(A);
+        } else {
+            printf("Rotacionar esquerda-direita\n");
+            rot_esq_dir(A); 
+        }
+        
+    } else if (bal < -1) {
+    
+        TipoArvore filhodir = (*A)->dir;
+        int balfilho = checaFB(&filhodir);
+        
+        if (balfilho <= 0) {
+            printf("Rotacionar a esquerda\n");
+            rot_esq(A);
+        } else {
+            printf("Rotacionar direita-esquerda\n");
+            rot_dir_esq(A); 
+        }
+    
+    }
+    
+    if (C != (*A)->Item.Chave) return;
     
     // se chegou aqui, eh pq a chave eh igual
     TipoApontador p;
     
     // Dá para tirar um desses ifs. Respondam como fariam isso.
     if ((*A)->esq == NULL && (*A)->dir == NULL) { //folha
+        printf("Removendo item com chave %d caso 1\n", (*A)->Item.Chave);
         p = *A;
         *A = NULL; //vai fazer o ponteiro dir ou esq chamado recursivamente apontar para nulo
         free(p);
     } else if ((*A)->esq == NULL) { //soh tem o da direita
+        printf("Removendo item com chave %d caso 2\n", (*A)->Item.Chave);
         p = *A;
         *A = (*A)->dir;
         free(p);
     } else if ((*A)->dir == NULL) { //soh tem o da esquerda
+        printf("Removendo item com chave %d caso 3\n", (*A)->Item.Chave);
         p = *A;
         *A = (*A)->esq;
         free(p);
     } else {
+        printf("Removendo item com chave %d caso 4\n", (*A)->Item.Chave);
         achaMaiorETroca(A, &(*A)->esq); // OU
         //achaMenorETroca(A, &(*A)->dir);
     }
-
+    
 }
 
 

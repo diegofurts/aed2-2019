@@ -64,8 +64,8 @@ int main() {
     I.Chave = 26;
     strcpy(I.Numeral, "vinte e seis");
     Insere(&A,I);
-    
-    printf("Acabou a insercao. Altura = %d\n", (*A).alt);
+
+    printf("Chave da raiz = %d\n", (*A).Item.Chave);
     emOrdem(A); printf("\n\n");
 
 
@@ -81,7 +81,6 @@ int main() {
     Remove(&A, 55);
     emOrdem(A); printf("\n\n");
     
-    printf("Acabou a remocao. Altura = %d\n", (*A).alt);
     printf("Chave da raiz = %d\n", (*A).Item.Chave);
     emOrdem(A); printf("\n\n");
     

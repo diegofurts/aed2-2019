@@ -22,7 +22,7 @@ void CriaArvore(TipoArvore *A);
 void CriaRaiz(TipoArvore *A, TipoItem I);
 
 void Insere(TipoArvore *A, TipoItem I);
-TipoItem Pesquisa(TipoArvore *A, TipoChave C);
+TipoArvore *Splay(TipoArvore *A, TipoChave C);
 void Remove(TipoArvore *A, TipoChave C);
 
 /*void rot_dir(TipoArvore *A);

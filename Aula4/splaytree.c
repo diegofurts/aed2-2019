@@ -42,25 +42,36 @@ void Insere(TipoArvore *A, TipoItem I) {
 
 }
 
-TipoItem Pesquisa(TipoArvore *A, TipoChave C) {
+// A função splay é também a função de pesquisa
+TipoArvore *Splay(TipoArvore *A, TipoChave C) {
 
     TipoItem I;
 
-    if ((*A) == NULL) { //nao achou
-        I.Chave = -1;
-        strcpy(I.Numeral, "|ERRO|");
-        return I;
+    if (C == (*A)->Item.Chave || (*A) == NULL) { //achou não existe
+        return A;
     }
+            
     
-    // ACHOU!
-    if (C == (*A)->Item.Chave)
-        return (*A)->Item;
+    if (C > (*A)->Item.Chave) { // vai para a direita
+    
+        if ((*A)->dir == NULL) return A; // não vai achar mesmo
         
+        if (C > (*A)->dir->Item.Chave) { // direita esquerda (zig zag)
+        } else { // direita direita (zig zig)
+        }
+
+        return Splay(&(*A)->dir, C);
     
-    if (C > (*A)->Item.Chave) { // direita
-        return Pesquisa(&(*A)->dir, C);
-    } else { // esquerda
-        return Pesquisa(&(*A)->esq, C);
+    } else { // vai para a esquerda
+    
+        if ((*A)->esq == NULL) return A; // não vai achar mesmo
+        
+        if (C > (*A)->esq->Item.Chave) { // esquerda direita (zag zig)
+        } else { // esquerda esquerda (zag zag)
+        }
+    
+        return Splay(&(*A)->esq, C);
+    
     }
 
 }

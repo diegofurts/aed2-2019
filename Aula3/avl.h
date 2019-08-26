@@ -1,5 +1,5 @@
-#ifndef ABB_H
-#define ABB_H
+#ifndef AVL_H
+#define AVL_H
 
 typedef int TipoChave;
 

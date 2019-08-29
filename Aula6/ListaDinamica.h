@@ -21,17 +21,12 @@ typedef struct TipoNo {
 	struct TipoNo *prox;
 } TipoNo;
 
-typedef struct TipoLista {
-	TipoApontador Primeiro, Ultimo;
-} TipoLista;
-
+typedef TipoApontador TipoLista;
 
 void InicializaLista(TipoLista *L);
-//void InserePrimeiroLista(TipoLista *L, TipoItem I);
-void InsereLista(TipoLista *L, TipoItem I);
+void InserePrimeiroLista(TipoLista *L, TipoItem I);
 TipoApontador PesquisaLista(TipoLista *L, TipoChave C);
 void RemoveLista(TipoLista *L, TipoChave C);
 void ImprimeLista(TipoLista *L);
-int ListaVazia(TipoLista *L);
 
 #endif

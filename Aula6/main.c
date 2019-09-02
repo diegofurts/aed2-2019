@@ -1,48 +1,47 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "ListaDinamica.h"
+#include "SkipList.h"
 
 int main() {
+
     TipoLista L;
     TipoItem item;
 
     InicializaLista(&L);
 
-	printf("Lista vazia? %d\n", ListaVazia(&L));
-	
     item.Chave = 5;
     InsereLista(&L, item);
+    
+    printf("%d %d\n", L->Item.Chave, L->prox->Item.Chave);
 
 	item.Chave = 1;
     InsereLista(&L, item);
-
-	ImprimeLista(&L);
+    
+    printf("%d %d %d\n", L->Item.Chave, L->prox->Item.Chave, L->prox->prox->Item.Chave);
 
     item.Chave = 3;
     InsereLista(&L, item);
+    
+    printf("%d %d %d\n", L->Item.Chave, L->prox->Item.Chave, L->prox->prox->Item.Chave);
 	
     item.Chave = 0;
     InsereLista(&L, item);
-
-	ImprimeLista(&L);
+    
+    item.Chave = 3;
+    InsereLista(&L, item);
+    
+    TipoApontador P = PesquisaLista(&L, 1);
+    if (P!=NULL)
+        printf("Encontrou %d\n", P->Item.Chave);
+    else
+        printf("Algo errado nao esta certo\n");
+    
 	
-	//PesquisaLista(&L, 5);
-	
+	/*
     RemoveLista(&L, 3);
     RemoveLista(&L, 5);
-	
-	ImprimeLista(&L);
-	
-	item.Chave = 15;
-    InsereLista(&L, item);
-	
-	ImprimeLista(&L);
-	
-	RemoveLista(&L, 15);
-	
-	ImprimeLista(&L);
 
-	/*TipoApontador P = L;
+	TipoApontador P = L;
 	while(P != NULL) {
 		L = L->prox;
 		printf("Limpando\n");

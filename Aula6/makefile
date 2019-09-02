@@ -1,12 +1,12 @@
 CC=gcc
 CFLAGS=-Wall
-objects = main.o ListaDinamica.o
+objects = main.o SkipList.o
 
 lista1 : $(objects)
-	$(CC) -o lista2 $(objects)
+	$(CC) -o skiplist $(objects)
 
-main.o : ListaDinamica.h
-ListaEstatica.o : ListaDinamica.h
+main.o : SkipList.h
+ListaEstatica.o : SkipList.h
 
 clean :
-	rm lista2 $(objects)
+	rm skiplist $(objects)

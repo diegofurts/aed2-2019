@@ -3,15 +3,47 @@
 #include "Lista.h"
 #include "Hash.h"
 
-int HashFunc(TipoChave C) {
+static int HashFunc(TipoChave C) {
 
     return (C*C) % MAXTAM;
 
 }
 
-void InicializaHash(TipoHash H);
-void InsereHash(TipoHash H, TipoItem I);
-TipoItem PesquisaHash(TipoHash H, TipoChave C);
-void RemoveHash(TipoHash H, TipoChave C);
+void InicializaHash(TipoHash H) {
+
+    int i;
+    for (i = 0; i < MAXTAM; i++)
+        InicializaLista(&(H[i]));
+
+}
+
+void InsereHash(TipoHash H, TipoItem I) {
+
+    int pos = HashFunc(I.Chave);
+    InsereLista(&H[pos], I);
+
+}
+
+
+TipoItem PesquisaHash(TipoHash H, TipoChave C)  {
+
+    int pos = HashFunc(C);
+    TipoNo *N = PesquisaLista(&H[pos], C);
+    if (N == NULL) {
+        TipoItem I;
+        I.Chave = -1;
+        return I;
+    } else {
+        return N->Item;
+    }
+
+}
+
+void RemoveHash(TipoHash H, TipoChave C) {
+
+    int pos = HashFunc(C);
+    RemoveLista(&H[pos], C);
+
+}
 
 

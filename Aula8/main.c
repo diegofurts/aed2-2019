@@ -43,6 +43,11 @@ int main() {
     RemoveHash(H, 3);
     RemoveHash(H, 100);
     RemoveHash(H, 125);
+  
+        
+    item = PesquisaHash(H, 3); printf("%d\n", item.Chave);
+    item = PesquisaHash(H, 100); printf("%d\n", item.Chave);
+    item = PesquisaHash(H, 125); printf("%d\n", item.Chave);
 	
 	return 0;
 }

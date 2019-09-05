@@ -4,48 +4,45 @@
 
 int main() {
 
-    /*TipoLista L;
+    TipoHash H;
     TipoItem item;
 
-    InicializaLista(&L);
+    InicializaHash(H);
 
     item.Chave = 5;
-    InsereLista(&L, item);
+    InsereHash(H, item);
     
-    printf("%d %d\n", L->Item.Chave, L->prox->Item.Chave);
-
-	item.Chave = 1;
-    InsereLista(&L, item);
+    item.Chave = 130;
+    InsereHash(H, item);
     
-    printf("%d %d %d\n", L->Item.Chave, L->prox->Item.Chave, L->prox->prox->Item.Chave);
-
-    item.Chave = 3;
-    InsereLista(&L, item);
+    item.Chave = 245;
+    InsereHash(H, item);
     
-    printf("%d %d %d\n", L->Item.Chave, L->prox->Item.Chave, L->prox->prox->Item.Chave);
-	
-    item.Chave = 0;
-    InsereLista(&L, item);
+    item.Chave = 930;
+    InsereHash(H, item);
     
-    item.Chave = 3;
-    InsereLista(&L, item);
+    item.Chave = 210;
+    InsereHash(H, item);
     
-    TipoApontador P = PesquisaLista(&L, 1);
-    if (P!=NULL)
-        printf("Encontrou %d\n", P->Item.Chave);
-    else
-        printf("Algo errado nao esta certo\n");
+    item.Chave = 125;
+    InsereHash(H, item);
     
-    RemoveLista(&L, 3);
-    RemoveLista(&L, 5);
-
-	TipoApontador P = L;
-	while(P != NULL) {
-		L = L->prox;
-		printf("Limpando\n");
-		free(P);
-		P = L;
-	}*/
+    item.Chave = 10;
+    InsereHash(H, item);
+    
+    item.Chave = 100;
+    InsereHash(H, item);
+    
+    item.Chave = 1000;
+    InsereHash(H, item);
+        
+    item = PesquisaHash(H, 3); printf("%d\n", item.Chave);
+    item = PesquisaHash(H, 100); printf("%d\n", item.Chave);
+    item = PesquisaHash(H, 125); printf("%d\n", item.Chave);
+        
+    RemoveHash(H, 3);
+    RemoveHash(H, 100);
+    RemoveHash(H, 125);
 	
 	return 0;
 }

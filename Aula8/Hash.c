@@ -9,4 +9,9 @@ int HashFunc(TipoChave C) {
 
 }
 
+void InicializaHash(TipoHash H);
+void InsereHash(TipoHash H, TipoItem I);
+TipoItem PesquisaHash(TipoHash H, TipoChave C);
+void RemoveHash(TipoHash H, TipoChave C);
+
 

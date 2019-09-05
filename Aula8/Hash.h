@@ -3,7 +3,13 @@
 
 #include "Lista.h"
 
-#define MAXTAM 200
+#define MAXTAM 113
 
+typedef TipoLista TipoHash[MAXTAM];
+
+void InicializaHash(TipoHash H);
+void InsereHash(TipoHash H, TipoItem I);
+TipoItem PesquisaHash(TipoHash H, TipoChave C);
+void RemoveHash(TipoHash H, TipoChave C);
 
 #endif

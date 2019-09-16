@@ -3,14 +3,12 @@
 int main() {
 
     int numbers[10000];
-    int n = 0;
+    int n = 0, k;
     
-    while (scanf("%d ", &numbers[n])!=EOF) {
-        
-        printf("%d - %d\n", n, numbers[n]);
+    scanf("%d ", &k);
+    
+    while (scanf("%d ", &numbers[n])!=EOF)
         n++;
-        
-    }
     
     return 0;    
 

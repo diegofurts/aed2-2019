@@ -3,7 +3,7 @@
 
 #include "Lista.h"
 
-#define MAXTAM 113
+#define MAXTAM 100
 
 typedef TipoLista TipoHash[MAXTAM];
 

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define TAM 256
+
 int max (int a, int b) { return (a > b)? a: b; } 
 
 void preprocGoodSuffix(int *gs, char *pat) {
@@ -29,10 +31,18 @@ void preprocGoodSuffix(int *gs, char *pat) {
         gs[i] = m - 2 - j;
         
     }
+}
+
+void preprocBadChar(int *lo, char *pat) {
+
+    int m = strlen(pat);
     
-    /*for (i = 0; i < m; i++)
-        printf("%d ", gs[i]);
-    printf("\n");*/
+    int i;
+    for(i = 0; i < TAM; i++)
+        lo[i] = -1;
+    
+    for (i = 0; i < m; i++)
+        lo[pat[i]] = i;
 
 }
 
@@ -44,31 +54,28 @@ int main() {
     int i, j;
     int m = strlen(pat), n = strlen(txt);
     
+    int lo[TAM];
     int gs[m+1];
     gs[m] = 1;
     
+    preprocBadChar(lo, pat);    
     preprocGoodSuffix(gs, pat);
-    //printf("%d %d %d\n", lo['A'], lo['B'], lo['C']);
     
-    i = 0; // i vai indexar a posicao no txt
-    while(i <= (n - m)) {
+    i = 0;
+    while(i <= n-m) {
         //printf("%d\n", i);
-        j = m-1; // a cada laco, comeca do ultimo char do pat
+        j=m-1;
         
-        // reduz ate dar mismatch
-        while(j >= 0 && pat[j] == txt[i+j])
-            j--;
-            
-        if (j < 0) {
+        for (; j>=0 && pat[j] == txt[j+i]; j--);
         
+        if(j < 0) {
             printf("Match na posicao %d\n", i);
-            i++;
-            
-        } else {        
-            i += gs[j+1];        
+            i += (m-lo[txt[i+m]]);
+        } else {
+            i += max(gs[j+1], j-lo[txt[i+j]]);
         }
     
     }
-            
+               
 
 }

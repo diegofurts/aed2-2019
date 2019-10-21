@@ -3,8 +3,8 @@
 
 int main() {
 
-    char txt[] = "ABAAAABAACDABABCCBACABABACAAABACABA"; 
-    char pat[] = "ABA";
+    char txt[] = "AABABACABABBAAAABAAABABACABABCDABABCCBACABABACAAAABABACABABBACABA"; 
+    char pat[] = "ABABACABAB";
     
     int i, j;
     int m = strlen(pat), n = strlen(txt);
